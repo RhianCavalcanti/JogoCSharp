@@ -5,22 +5,6 @@ using System.Text;
 
 namespace Jogo
 {
-
-
-    class Heroi
-    {
-        string valor = "H";
-        int vida = 25;
-        int dano = 1;
-
-    }
-    class Monstro
-    {
-        string valor = "M";
-        int vida = 5;
-        int dano = 1;
-    }
-
     class Mapa
     {
         public static string[,] mapa = new string[20, 20]
@@ -48,12 +32,6 @@ namespace Jogo
             };
 
     }
-
-
-
-
-
-
     class Config
     {
 
@@ -79,7 +57,7 @@ namespace Jogo
             return direcao;
         }
 
-        public static bool NascimentoMonstros()
+        public static string NascimentoMonstros()
         {
             Random rnd = new Random();
 
@@ -92,7 +70,7 @@ namespace Jogo
 
 
 
-            return true;
+            return Mapa.mapa[posicaohorizontal,posicaovertical]="M";
         }
 
     }
