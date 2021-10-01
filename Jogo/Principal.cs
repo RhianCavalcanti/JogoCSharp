@@ -10,20 +10,27 @@ namespace Jogo
         static void Main(string[] args)
         {
             Mapa.mapa[0, 0] = Heroi.valor;
-       
-
-             
             Config.NascimentoMonstros();
-            for (int i = 0; i < 20; i++)
+            ConsoleKeyInfo keyInfo;
+
+            while (true)
             {
-                for (int j = 0; j < 20; j++)
-                {   
-                    Console.Write(Mapa.mapa[i, j]+" ");
-                    
+                Console.Clear();
+                Console.WriteLine("-------------------------------------------"+"\n"+ 
+                    "-------------------------------------------");
+                for (int i = 0; i < 20; i++)
+                {
+                    for (int j = 0; j < 20; j++)
+                    {
+                        Console.Write(Mapa.mapa[i, j] + " ");
+
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
+                Console.WriteLine("\n");
+                Config.MovimentoHeroi();
             }
-           
+
         }
        
     }
