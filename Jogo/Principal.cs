@@ -10,17 +10,7 @@ namespace Jogo
         static void Main(string[] args)
         {
             Mapa.mapa[0, 0] = Heroi.valor;
-            switch (Heroi.valor)
-            {
-                case "H":
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-
-                    
-            }
+       
 
              
             Config.NascimentoMonstros();

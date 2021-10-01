@@ -70,7 +70,7 @@ namespace Jogo
 
 
 
-            return Mapa.mapa[posicaohorizontal,posicaovertical]="M";
+            return Mapa.mapa[posicaohorizontal,posicaovertical]=Monstro.valor;
         }
 
     }

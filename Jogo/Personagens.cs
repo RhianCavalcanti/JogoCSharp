@@ -16,9 +16,9 @@ namespace Jogo
     }
     class Monstro
     {
-        string valor = "M";
-        int vida = 5;
-        int dano = 1;
+        public static string valor = "M";
+        public int vida = 5;
+        public int dano = 1;
 
     }
 
