@@ -9,11 +9,13 @@ namespace Jogo
     {
         static void Main(string[] args)
         {
-            Mapa.mapa[0, 0] = Heroi.valor;
+            Heroi hero = new Heroi();
+            var consoleAberto = true;
+            Mapa.mapa[0, 0] = hero.getValor();
             Config.NascimentoMonstros();
             ConsoleKeyInfo keyInfo;
 
-            while (true)
+            do
             {
                 Console.Clear();
                 Console.WriteLine("-------------------------------------------"+"\n"+ 
@@ -31,7 +33,7 @@ namespace Jogo
                 Config.MovimentoMonstros();
                 Config.MovimentoHeroi();
                 
-            }
+            }while (consoleAberto);
 
         }
        

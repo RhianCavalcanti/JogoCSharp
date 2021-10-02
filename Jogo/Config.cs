@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Jogo;
 
 namespace Jogo
 {
@@ -34,6 +35,10 @@ namespace Jogo
     }
     class Config
     {
+        public static Boolean clickEscape()
+        {
+            return false;
+        }
 
         public static string MovimentoHorizontalMonstros()
         {
@@ -76,7 +81,7 @@ namespace Jogo
                 {
 
                     qntdMonstros = qntdMonstros + 1;
-                    Mapa.mapa[posicaohorizontal, posicaovertical] = Monstro.valor;
+                    Mapa.mapa[posicaohorizontal, posicaovertical] = Monstro.getValor();
                 }
 
             }
@@ -85,7 +90,7 @@ namespace Jogo
 
         public static string MovimentoHeroi()
         {
-            
+            Heroi hero = new Heroi();
             for (int i = 0; i < 20; i++)
             {
                 for (int j = 0; j < 20; j++)
@@ -100,37 +105,40 @@ namespace Jogo
                         {
                             if (esqdir <= 0)
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
-                            else if (Mapa.mapa[cimabaixo, esqdir-1] == Monstro.valor)
+                            else if (Mapa.mapa[cimabaixo, esqdir-1] == Monstro.getValor())
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
-
-                                return Mapa.mapa[cimabaixo, esqdir - 1] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
                             }
-
+                            
                         }
 
                         else if (movimento.Key == ConsoleKey.D)
                         {
                             if (esqdir >= 19)
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
-                            else if (Mapa.mapa[cimabaixo, esqdir+1] == Monstro.valor)
+                            else if (Mapa.mapa[cimabaixo, esqdir+1] == Monstro.getValor())
                             {
-                                
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
-
-                                return Mapa.mapa[cimabaixo, esqdir + 1] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
                             }
 
                         }
@@ -138,17 +146,19 @@ namespace Jogo
                         {
                             if (cimabaixo >= 19)
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
-                            else if (Mapa.mapa[cimabaixo+1, esqdir] == Monstro.valor)
+                            else if (Mapa.mapa[cimabaixo+1, esqdir] == Monstro.getValor())
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
-
-                                return Mapa.mapa[cimabaixo+1, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo+1, esqdir] = hero.getValor();
                             }
 
                         }
@@ -157,24 +167,53 @@ namespace Jogo
                         {
                             if (cimabaixo <= 0)
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
-                            else if (Mapa.mapa[cimabaixo-1, esqdir] == Monstro.valor)
+                            else if (Mapa.mapa[cimabaixo-1, esqdir] == Monstro.getValor())
                             {
-                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
-
-                                return Mapa.mapa[cimabaixo -1, esqdir] = Heroi.valor;
+                                hero.reduzVida();
+                                return Mapa.mapa[cimabaixo -1, esqdir] = hero.getValor();
                             }
 
                         }
 
+                        /* else if (movimento.Key == ConsoleKey.Spacebar)  //checar se tem monstro para causar dano
+                         {
+                             if (cimabaixo <= 0)
+                             {
+                                 hero.reduzVida();
+                                 return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                             }
+                             else if (Mapa.mapa[cimabaixo - 1, esqdir] == Monstro.getValor())
+                             {
+                                 hero.reduzVida();
+                                 return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                             }
+                             else
+                             {
+                                 Mapa.mapa[cimabaixo, esqdir] = "O";
+                                 hero.reduzVida();
+                                 return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
+                             }
+
+                         }*/
+
+                        else if (movimento.Key == ConsoleKey.Escape) //se clicar em Esc
+                        {
+                            Environment.Exit(0);
+
+                        }
+                        
                         else
                         {
-                            return Mapa.mapa[esqdir, cimabaixo] = Heroi.valor;
+                            return Mapa.mapa[esqdir, cimabaixo] = hero.getValor();
                         }
 
 
