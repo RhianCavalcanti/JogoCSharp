@@ -57,22 +57,31 @@ namespace Jogo
             return direcao;
         }
 
-        public static string NascimentoMonstros()
+        public static bool NascimentoMonstros()
         {
+            int qntdMonstros = 0;
+            int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
             Random rnd = new Random();
+            while (qntdMonstros <7)
+            {
 
-            int[] horizontal = { 2, 17 };
-            int[] vertical = { 2, 17 };
-            int indicehorizontal = rnd.Next(horizontal.Length);
-            int indicevertical = rnd.Next(vertical.Length);
-            int posicaohorizontal = horizontal[indicehorizontal];
-            int posicaovertical = vertical[indicevertical];
+                
+                
+                int indicehorizontal = rnd.Next(horizontal.Length);
+                int indicevertical = rnd.Next(vertical.Length);
+                int posicaohorizontal = horizontal[indicehorizontal];
+                int posicaovertical = vertical[indicevertical];
+                if (Mapa.mapa[posicaohorizontal, posicaovertical] == "O" & Mapa.mapa[posicaohorizontal, posicaovertical] != "M")
+                {
 
+                    qntdMonstros = qntdMonstros + 1;
+                    Mapa.mapa[posicaohorizontal, posicaovertical] = Monstro.valor;
+                }
 
-
-            return Mapa.mapa[posicaohorizontal,posicaovertical]=Monstro.valor;
+            }
+            return true;
         }
-
 
         public static string MovimentoHeroi()
         {
@@ -93,6 +102,10 @@ namespace Jogo
                             {
                                 return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
                             }
+                            else if (Mapa.mapa[cimabaixo, esqdir-1] == Monstro.valor)
+                            {
+                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                            }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -106,6 +119,11 @@ namespace Jogo
                         {
                             if (esqdir >= 19)
                             {
+                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                            }
+                            else if (Mapa.mapa[cimabaixo, esqdir+1] == Monstro.valor)
+                            {
+                                
                                 return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
                             }
                             else
@@ -122,6 +140,10 @@ namespace Jogo
                             {
                                 return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
                             }
+                            else if (Mapa.mapa[cimabaixo+1, esqdir] == Monstro.valor)
+                            {
+                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                            }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -134,6 +156,10 @@ namespace Jogo
                         else if (movimento.Key == ConsoleKey.W)
                         {
                             if (cimabaixo <= 0)
+                            {
+                                return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
+                            }
+                            else if (Mapa.mapa[cimabaixo-1, esqdir] == Monstro.valor)
                             {
                                 return Mapa.mapa[cimabaixo, esqdir] = Heroi.valor;
                             }
@@ -162,7 +188,42 @@ namespace Jogo
 
 
             
-            return Mapa.mapa[0,0] = Heroi.valor;
+            return "none";
         }
+        public static string MovimentoMonstros()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    int monstrodiresq = j;
+                    int monstrocimabaixo = i;
+                    if (Mapa.mapa[i, j] == "M")
+                    {
+                        if (MovimentoHorizontalMonstros() == "esquerda")
+                        {
+                            Mapa.mapa[monstrodiresq, monstrocimabaixo] = "O";
+                            return Mapa.mapa[monstrodiresq - 1, monstrocimabaixo] = "M";
+                        }
+                        else if (MovimentoHorizontalMonstros() == "direita")
+                        {
+                            Mapa.mapa[monstrodiresq, monstrocimabaixo] = "O";
+                            return Mapa.mapa[monstrodiresq + 1, monstrocimabaixo] = "M";
+                        }
+                        else if (MovimentoVerticalMonstros() == "cima")
+                        {
+                            Mapa.mapa[monstrodiresq, monstrocimabaixo-1] = "O";
+                            return Mapa.mapa[monstrodiresq, monstrocimabaixo] = "M";
+                        }
+                        else if (MovimentoVerticalMonstros() == "baixo")
+                        {
+                            Mapa.mapa[monstrodiresq, monstrocimabaixo+1] = "O";
+                            return Mapa.mapa[monstrodiresq, monstrocimabaixo] = "M";
+                        }
+                    }
+                }
+            }
+            return "none";
+        }   
     }
 }

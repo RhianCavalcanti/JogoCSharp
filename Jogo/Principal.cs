@@ -28,7 +28,9 @@ namespace Jogo
                     Console.WriteLine();
                 }
                 Console.WriteLine("\n");
+                Config.MovimentoMonstros();
                 Config.MovimentoHeroi();
+                
             }
 
         }
