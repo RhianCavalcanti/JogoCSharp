@@ -11,7 +11,7 @@ namespace Jogo
         {
             Mapa.mapa[0, 0] = Heroi.valor;
             Config.NascimentoMonstros();
-            ConsoleKeyInfo keyInfo;
+     
 
             while (true)
             {
