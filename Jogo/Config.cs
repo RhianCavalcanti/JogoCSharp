@@ -125,6 +125,7 @@ namespace Jogo
                         ConsoleKeyInfo movimento = Console.ReadKey();
                         if (movimento.Key == ConsoleKey.A)
                         {
+                            hero.contaScore();
                             if (esqdir <= 0)
                             {
                                 hero.reduzVida();
@@ -152,6 +153,7 @@ namespace Jogo
 
                         else if (movimento.Key == ConsoleKey.D)
                         {
+                            hero.contaScore();
                             if (esqdir >= 19)
                             {
                                 hero.reduzVida();
@@ -178,6 +180,7 @@ namespace Jogo
                         }
                         else if (movimento.Key == ConsoleKey.S)
                         {
+                            hero.contaScore();
                             if (cimabaixo >= 19)
                             {
                                 hero.reduzVida();
@@ -205,6 +208,7 @@ namespace Jogo
 
                         else if (movimento.Key == ConsoleKey.W)
                         {
+                            hero.contaScore();
                             if (cimabaixo <= 0)
                             {
                                 hero.reduzVida();

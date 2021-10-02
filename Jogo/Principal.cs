@@ -20,9 +20,14 @@ namespace Jogo
 
             do
             {
+                
+                int vidaheroi = hero.getVida();
+                int danoheroi = hero.getDano();
+                int score = hero.getScore();
                 Console.Clear();
-                Console.WriteLine("-------------------------------------------"+"\n"+ 
-                    "-------------------------------------------");
+                Console.WriteLine("========================================"+"\n"+ "Hero HP: "+ vidaheroi+" | "+
+                    "Hero Damage: "+danoheroi+ " | "+"Score: " +score+"\n"+
+                    "========================================");
                 for (int i = 0; i < 20; i++)
                 {
                     for (int j = 0; j < 20; j++)
@@ -35,7 +40,6 @@ namespace Jogo
                 Console.WriteLine("\n");
                 Config.MovimentoMonstros();
                 Config.MovimentoHeroi();
-                
             }while (consoleAberto);
 
         }
