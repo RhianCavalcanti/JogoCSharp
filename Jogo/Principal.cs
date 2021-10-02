@@ -13,7 +13,7 @@ namespace Jogo
             var consoleAberto = true;
             Mapa.mapa[0, 0] = hero.getValor();
             Config.NascimentoMonstros();
-            ConsoleKeyInfo keyInfo;
+     
 
             do
             {
