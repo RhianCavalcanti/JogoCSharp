@@ -25,9 +25,23 @@ namespace Jogo
         {
             dano++;
         }
+        public void bebePocao()
+        {
+            vida = vida + 6;
+        }
 
     }
-    
+
+    public class Destino
+    {
+        private static string valor = "D";
+
+        public String getValor()
+        {
+            return valor;
+        }
+    }
+
     class Monstro
     {
         private static string valor = "M";
@@ -44,7 +58,6 @@ namespace Jogo
             vida--;
         }
     }
-
 
 
 }

@@ -70,8 +70,6 @@ namespace Jogo
             Random rnd = new Random();
             while (qntdMonstros <7)
             {
-
-                
                 
                 int indicehorizontal = rnd.Next(horizontal.Length);
                 int indicevertical = rnd.Next(vertical.Length);
@@ -82,6 +80,30 @@ namespace Jogo
 
                     qntdMonstros = qntdMonstros + 1;
                     Mapa.mapa[posicaohorizontal, posicaovertical] = Monstro.getValor();
+                }
+
+            }
+            return true;
+        }
+
+        public static bool Pocoes()
+        {
+            int qtdPocoes = 0;
+            int[] horizontal = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
+            int[] vertical = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
+            Random rnd = new Random();
+            while (qtdPocoes < 9)
+            {
+
+                int indicehorizontal = rnd.Next(horizontal.Length);
+                int indicevertical = rnd.Next(vertical.Length);
+                int posicaohorizontal = horizontal[indicehorizontal];
+                int posicaovertical = vertical[indicevertical];
+                if (Mapa.mapa[posicaohorizontal, posicaovertical] == "O" && Mapa.mapa[posicaohorizontal, posicaovertical] != "M")
+                {
+
+                    qtdPocoes = qtdPocoes + 1;
+                    Mapa.mapa[posicaohorizontal, posicaovertical] = "P";
                 }
 
             }
@@ -113,6 +135,12 @@ namespace Jogo
                                 hero.reduzVida();
                                 return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
+                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == "P")
+                            {
+                                hero.bebePocao();
+                                Mapa.mapa[cimabaixo, esqdir] = "O";
+                                return Mapa.mapa[cimabaixo, esqdir -1] = hero.getValor();
+                            }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -134,6 +162,12 @@ namespace Jogo
                                 hero.reduzVida();
                                 return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                             }
+                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == "P")
+                            {
+                                hero.bebePocao();
+                                Mapa.mapa[cimabaixo, esqdir] = "O";
+                                return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                            }
                             else
                             {
                                 Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -153,6 +187,12 @@ namespace Jogo
                             {
                                 hero.reduzVida();
                                 return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                            }
+                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == "P")
+                            {
+                                Mapa.mapa[cimabaixo, esqdir] = "O";
+                                hero.bebePocao();
+                                return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
                             }
                             else
                             {
@@ -174,6 +214,12 @@ namespace Jogo
                             {
                                 hero.reduzVida();
                                 return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                            }
+                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == "P")
+                            {
+                                Mapa.mapa[cimabaixo, esqdir] = "O";
+                                hero.bebePocao();
+                                return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
                             }
                             else
                             {

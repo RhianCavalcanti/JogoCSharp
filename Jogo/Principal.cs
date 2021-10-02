@@ -10,9 +10,12 @@ namespace Jogo
         static void Main(string[] args)
         {
             Heroi hero = new Heroi();
+            Destino destino = new Destino();
             var consoleAberto = true;
             Mapa.mapa[0, 0] = hero.getValor();
+            Mapa.mapa[19, 19] = destino.getValor();
             Config.NascimentoMonstros();
+            Config.Pocoes();
      
 
             do
