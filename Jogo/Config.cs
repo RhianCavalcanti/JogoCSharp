@@ -284,31 +284,36 @@ namespace Jogo
                     int monstrodiresq = j;
                     int monstrocimabaixo = i;
                     if (Mapa.mapa[i, j] == "M")
-                    {
-                        if (MovimentoHorizontalMonstros() == "esquerda")
+                    {   
+                      
+                        if (MovimentoHorizontalMonstros() == "esquerda" & j>2)
                         {
-                            Mapa.mapa[monstrodiresq, monstrocimabaixo] = "O";
-                            return Mapa.mapa[monstrodiresq - 1, monstrocimabaixo] = "M";
+                            Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
+                            return Mapa.mapa[monstrocimabaixo, monstrodiresq - 1] = "M";
                         }
-                        else if (MovimentoHorizontalMonstros() == "direita")
+                        else if (MovimentoHorizontalMonstros() == "direita" & j<17)
                         {
-                            Mapa.mapa[monstrodiresq, monstrocimabaixo] = "O";
-                            return Mapa.mapa[monstrodiresq + 1, monstrocimabaixo] = "M";
+                            Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
+                            return Mapa.mapa[monstrocimabaixo, monstrodiresq + 1] = "M";
                         }
-                        else if (MovimentoVerticalMonstros() == "cima")
+                        else if (MovimentoVerticalMonstros() == "cima" & i>2)
                         {
-                            Mapa.mapa[monstrodiresq, monstrocimabaixo-1] = "O";
-                            return Mapa.mapa[monstrodiresq, monstrocimabaixo] = "M";
+                            Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
+                            return Mapa.mapa[monstrocimabaixo - 1, monstrodiresq] = "M";
                         }
-                        else if (MovimentoVerticalMonstros() == "baixo")
+                        else if (MovimentoVerticalMonstros() == "baixo" & i<17)
                         {
-                            Mapa.mapa[monstrodiresq, monstrocimabaixo+1] = "O";
-                            return Mapa.mapa[monstrodiresq, monstrocimabaixo] = "M";
+                            Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
+                            return Mapa.mapa[monstrocimabaixo + 1, monstrodiresq] = "M";
                         }
                     }
                 }
             }
             return "none";
-        }   
+        }
+
+       
+
     }
 }
+

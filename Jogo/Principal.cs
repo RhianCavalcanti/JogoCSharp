@@ -16,7 +16,7 @@ namespace Jogo
             Mapa.mapa[19, 19] = destino.getValor();
             Config.NascimentoMonstros();
             Config.Pocoes();
-     
+           
 
             do
             {
