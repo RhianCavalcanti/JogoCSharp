@@ -32,7 +32,39 @@ namespace Jogo
                 {
                     for (int j = 0; j < 20; j++)
                     {
-                        Console.Write(Mapa.mapa[i, j] + " ");
+                        
+                        string mapacor = Mapa.mapa[i, j];
+                        foreach (var character in mapacor.ToUpper())
+                        {   
+                            if (mapacor == "H")
+                            {
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                Console.Write(character+" ");
+                            }
+                            else if (mapacor == "M")
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(character + " ");
+                            }
+                            else if (mapacor == "P")
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write(character + " ");
+                            }
+                            else if (mapacor == "D")
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                Console.Write(character + " ");
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.Write(character + " ");
+                            }
+                            Console.ResetColor();
+                        }
+
+                        
 
                     }
                     Console.WriteLine();

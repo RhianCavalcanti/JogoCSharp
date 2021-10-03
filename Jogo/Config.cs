@@ -75,11 +75,11 @@ namespace Jogo
                 int indicevertical = rnd.Next(vertical.Length);
                 int posicaohorizontal = horizontal[indicehorizontal];
                 int posicaovertical = vertical[indicevertical];
-                if (Mapa.mapa[posicaohorizontal, posicaovertical] == "O" & Mapa.mapa[posicaohorizontal, posicaovertical] != "M")
+                if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O" & Mapa.mapa[posicaovertical, posicaohorizontal] != Monstro.getValor())
                 {
 
                     qntdMonstros = qntdMonstros + 1;
-                    Mapa.mapa[posicaohorizontal, posicaovertical] = Monstro.getValor();
+                    Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
                 }
 
             }
@@ -99,7 +99,7 @@ namespace Jogo
                 int indicevertical = rnd.Next(vertical.Length);
                 int posicaohorizontal = horizontal[indicehorizontal];
                 int posicaovertical = vertical[indicevertical];
-                if (Mapa.mapa[posicaohorizontal, posicaovertical] == "O" && Mapa.mapa[posicaohorizontal, posicaovertical] != "M")
+                if (Mapa.mapa[posicaohorizontal, posicaovertical] == "O" && Mapa.mapa[posicaohorizontal, posicaovertical] != Monstro.getValor())
                 {
 
                     qtdPocoes = qtdPocoes + 1;
@@ -234,7 +234,7 @@ namespace Jogo
 
                         }
 
-                        /* else if (movimento.Key == ConsoleKey.Spacebar)  //checar se tem monstro para causar dano
+                         /*else if (movimento.Key == ConsoleKey.Spacebar)  //checar se tem monstro para causar dano
                          {
                              if (cimabaixo <= 0)
                              {
@@ -285,30 +285,35 @@ namespace Jogo
             {
                 for (int j = 0; j < 20; j++)
                 {
+                    
                     int monstrodiresq = j;
                     int monstrocimabaixo = i;
-                    if (Mapa.mapa[i, j] == "M")
+                    if (Mapa.mapa[i, j] == Monstro.getValor())
                     {   
                       
-                        if (MovimentoHorizontalMonstros() == "esquerda" & j>2)
+                        if (MovimentoHorizontalMonstros() == "esquerda" & j> 2 & Mapa.mapa[monstrocimabaixo, monstrodiresq-1]=="O")
                         {
                             Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
-                            return Mapa.mapa[monstrocimabaixo, monstrodiresq - 1] = "M";
+                            return Mapa.mapa[monstrocimabaixo, monstrodiresq - 1] = Monstro.getValor();
                         }
-                        else if (MovimentoHorizontalMonstros() == "direita" & j<17)
+                        else if (MovimentoHorizontalMonstros() == "direita" & j< 17 & Mapa.mapa[monstrocimabaixo, monstrodiresq+1] == "O")
                         {
                             Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
-                            return Mapa.mapa[monstrocimabaixo, monstrodiresq + 1] = "M";
+                            return Mapa.mapa[monstrocimabaixo, monstrodiresq + 1] = Monstro.getValor();
                         }
-                        else if (MovimentoVerticalMonstros() == "cima" & i>2)
+                        else if (MovimentoVerticalMonstros() == "cima" & i> 2 & Mapa.mapa[monstrocimabaixo-1, monstrodiresq] == "O")
                         {
                             Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
-                            return Mapa.mapa[monstrocimabaixo - 1, monstrodiresq] = "M";
+                            return Mapa.mapa[monstrocimabaixo - 1, monstrodiresq] = Monstro.getValor();
                         }
-                        else if (MovimentoVerticalMonstros() == "baixo" & i<17)
+                        else if (MovimentoVerticalMonstros() == "baixo" & i< 17 & Mapa.mapa[monstrocimabaixo+1, monstrodiresq] == "O")
                         {
                             Mapa.mapa[monstrocimabaixo, monstrodiresq] = "O";
-                            return Mapa.mapa[monstrocimabaixo + 1, monstrodiresq] = "M";
+                            return Mapa.mapa[monstrocimabaixo + 1, monstrodiresq] = Monstro.getValor();
+                        }
+                        else
+                        {
+
                         }
                     }
                 }
@@ -317,6 +322,7 @@ namespace Jogo
         }
 
        
+
 
     }
 }
