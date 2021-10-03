@@ -14,9 +14,14 @@ namespace Jogo
             var consoleAberto = true;
             Mapa.mapa[0, 0] = hero.getValor();
             Mapa.mapa[19, 19] = destino.getValor();
-            Config.NascimentoMonstros();
+           // Config.NascimentoMonstros();
             Config.Pocoes();
-           
+            Monstro monstro1 = new Monstro();
+            monstro1.nasceMonstro();
+            Monstro monstro2 = new Monstro();
+            monstro2.nasceMonstro();
+
+
 
             do
             {
@@ -70,9 +75,11 @@ namespace Jogo
                     Console.WriteLine();
                 }
                 Console.WriteLine("\n");
-                Config.MovimentoMonstros();
+                //Config.MovimentoMonstros();
                 Config.MovimentoHeroi();
-            }while (consoleAberto);
+                monstro1.MovimentoMonstros();
+                monstro2.MovimentoMonstros();
+            } while (consoleAberto);
 
         }
        
