@@ -61,13 +61,18 @@ namespace Jogo
     class Monstro
     {
         private static string valor = "M";
-        private int vida = 5;
+        private int vida;
         private int dano = 1;
         private int indicehorizontal;
         private int indicevertical;
         private int posicaohorizontal;
         private int posicaovertical;
-
+        public Monstro()
+        {
+            vida = 5;
+            dano = 1;
+        }
+        
         public void nasceMonstro()
         {
             int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
@@ -204,6 +209,16 @@ namespace Jogo
         public void reduzVida()
         {
             vida--;
+        }
+    }
+    class Boss: Monstro
+    {
+        private int vida;
+        private int dano;
+        public Boss()
+        {
+            vida = 10;
+            dano = 2;
         }
     }
 
