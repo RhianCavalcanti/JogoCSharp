@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Jogo
 {
-       
     class Principal
     {
         static void Main(string[] args)
@@ -14,7 +13,6 @@ namespace Jogo
             var consoleAberto = true;
             Mapa.mapa[0, 0] = hero.getValor();
             Mapa.mapa[19, 19] = destino.getValor();
-           // Config.NascimentoMonstros();
             Config.Pocoes();
             Config.Arma();
             Monstro monstro1 = new Monstro();
@@ -29,8 +27,6 @@ namespace Jogo
             monstro5.nasceMonstro();
             Monstro monstro6 = new Monstro();
             monstro6.nasceMonstro();
-
-
 
             do
             {
@@ -82,14 +78,10 @@ namespace Jogo
                             }
                             Console.ResetColor();
                         }
-
-                        
-
                     }
                     Console.WriteLine();
                 }
                 Console.WriteLine("\n");
-                //Config.MovimentoMonstros();
                 Config.MovimentoHeroi();
                 monstro1.MovimentoMonstros();
                 monstro2.MovimentoMonstros();
@@ -98,10 +90,6 @@ namespace Jogo
                 monstro5.MovimentoMonstros();
                 monstro6.MovimentoMonstros();
             } while (consoleAberto);
-
         }
-       
     }
-
-
 }
