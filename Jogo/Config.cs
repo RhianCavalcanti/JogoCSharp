@@ -133,116 +133,224 @@ namespace Jogo
                         int esqdir = j;
                         
                         ConsoleKeyInfo movimento = Console.ReadKey();
-                        if (movimento.Key == ConsoleKey.A)
+                        switch (movimento.Key)
                         {
-                            hero.contaScore();
-                            if (esqdir <= 0)
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir-1] == Monstro.getValor())
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == "P")
-                            {
-                                hero.bebePocao();
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                return Mapa.mapa[cimabaixo, esqdir -1] = hero.getValor();
-                            }
-                            else
-                            {
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
-                            }
+                            case ConsoleKey.A:
+                                hero.contaScore();
+                                if (esqdir <= 0)
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir - 1] == Monstro.getValor())
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir - 1] == "P")
+                                {
+                                    hero.bebePocao();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
+                                }
+                                else
+                                {
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
+                                }
+                                break;
+                            case ConsoleKey.D:
+                                hero.contaScore();
+                                if (esqdir >= 19)
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir + 1] == Monstro.getValor())
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir + 1] == "P")
+                                {
+                                    hero.bebePocao();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                                }
+                                else
+                                {
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                                }
+                                break;
+                            case ConsoleKey.S:
+                                hero.contaScore();
+                                if (cimabaixo >= 19)
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo + 1, esqdir] == Monstro.getValor())
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo + 1, esqdir] == "P")
+                                {
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    hero.bebePocao();
+                                    return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
+                                }
+                                else
+                                {
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
+                                }
+                                break;
+                            case ConsoleKey.W:
+                                hero.contaScore();
+                                if (cimabaixo <= 0)
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo - 1, esqdir] == Monstro.getValor())
+                                {
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo - 1, esqdir] == "P")
+                                {
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    hero.bebePocao();
+                                    return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
+                                }
+                                else
+                                {
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    hero.reduzVida();
+                                    return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
+                                }
+                                break;
+                            case ConsoleKey.Escape:
+                                Environment.Exit(0);
+                                break;
+                            default:
+                                break;
+                        }
+                        //if (movimento.Key == ConsoleKey.A)
+                        //{
+                        //    hero.contaScore();
+                        //    if (esqdir <= 0)
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo, esqdir-1] == Monstro.getValor())
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo, esqdir - 1] == "P")
+                        //    {
+                        //        hero.bebePocao();
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        return Mapa.mapa[cimabaixo, esqdir -1] = hero.getValor();
+                        //    }
+                        //    else
+                        //    {
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
+                        //    }
                             
-                        }
+                        //}
 
-                        else if (movimento.Key == ConsoleKey.D)
-                        {
-                            hero.contaScore();
-                            if (esqdir >= 19)
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir+1] == Monstro.getValor())
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == "P")
-                            {
-                                hero.bebePocao();
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
-                            }
-                            else
-                            {
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
-                            }
+                        //else if (movimento.Key == ConsoleKey.D)
+                        //{
+                        //    hero.contaScore();
+                        //    if (esqdir >= 19)
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo, esqdir+1] == Monstro.getValor())
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo, esqdir + 1] == "P")
+                        //    {
+                        //        hero.bebePocao();
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                        //    }
+                        //    else
+                        //    {
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                        //    }
 
-                        }
-                        else if (movimento.Key == ConsoleKey.S)
-                        {
-                            hero.contaScore();
-                            if (cimabaixo >= 19)
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo+1, esqdir] == Monstro.getValor())
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == "P")
-                            {
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                hero.bebePocao();
-                                return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
-                            }
-                            else
-                            {
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo+1, esqdir] = hero.getValor();
-                            }
+                        //}
+                        //else if (movimento.Key == ConsoleKey.S)
+                        //{
+                        //    hero.contaScore();
+                        //    if (cimabaixo >= 19)
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo+1, esqdir] == Monstro.getValor())
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo + 1, esqdir] == "P")
+                        //    {
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        hero.bebePocao();
+                        //        return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
+                        //    }
+                        //    else
+                        //    {
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo+1, esqdir] = hero.getValor();
+                        //    }
 
-                        }
+                        //}
 
-                        else if (movimento.Key == ConsoleKey.W)
-                        {
-                            hero.contaScore();
-                            if (cimabaixo <= 0)
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo-1, esqdir] == Monstro.getValor())
-                            {
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == "P")
-                            {
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                hero.bebePocao();
-                                return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
-                            }
-                            else
-                            {
-                                Mapa.mapa[cimabaixo, esqdir] = "O";
-                                hero.reduzVida();
-                                return Mapa.mapa[cimabaixo -1, esqdir] = hero.getValor();
-                            }
+                        //else if (movimento.Key == ConsoleKey.W)
+                        //{
+                        //    hero.contaScore();
+                        //    if (cimabaixo <= 0)
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo-1, esqdir] == Monstro.getValor())
+                        //    {
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                        //    }
+                        //    else if (Mapa.mapa[cimabaixo - 1, esqdir] == "P")
+                        //    {
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        hero.bebePocao();
+                        //        return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
+                        //    }
+                        //    else
+                        //    {
+                        //        Mapa.mapa[cimabaixo, esqdir] = "O";
+                        //        hero.reduzVida();
+                        //        return Mapa.mapa[cimabaixo -1, esqdir] = hero.getValor();
+                        //    }
 
-                        }
+                        //}
 
                          /*else if (movimento.Key == ConsoleKey.Spacebar)  //checar se tem monstro para causar dano
                          {
@@ -265,16 +373,15 @@ namespace Jogo
 
                          }*/
 
-                        else if (movimento.Key == ConsoleKey.Escape) //se clicar em Esc
-                        {
-                            Environment.Exit(0);
-
-                        }
+                        //else if (movimento.Key == ConsoleKey.Escape) //se clicar em Esc
+                        //{
+                        //    Environment.Exit(0);
+                        //}
                         
-                        else
-                        {
-                            return Mapa.mapa[esqdir, cimabaixo] = hero.getValor();
-                        }
+                        //else
+                        //{
+                        //    return Mapa.mapa[esqdir, cimabaixo] = hero.getValor();
+                        //}
 
 
 
