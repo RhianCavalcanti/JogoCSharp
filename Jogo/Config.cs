@@ -40,11 +40,8 @@ namespace Jogo
             return false;
         }
 
-        
-
         public static bool NascimentoMonstros()
         {
-            
             int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
             int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
             Random rnd = new Random();
@@ -58,7 +55,6 @@ namespace Jogo
             {
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
             }
-            
             return true;
         }
 
@@ -86,10 +82,26 @@ namespace Jogo
             return true;
         }
 
-        public static string ControlesHeroi(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6)
+        public static bool Arma()
+        {
+            int[] horizontal = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
+            int[] vertical = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
+            Random rnd = new Random();
+            int indicehorizontal = rnd.Next(horizontal.Length);
+            int indicevertical = rnd.Next(vertical.Length);
+            int posicaohorizontal = horizontal[indicehorizontal];
+            int posicaovertical = vertical[indicevertical];
+            if (Mapa.mapa[posicaohorizontal, posicaovertical] == "O" && Mapa.mapa[posicaohorizontal, posicaovertical] != Monstro.getValor())
+            {
+                Mapa.mapa[posicaohorizontal, posicaovertical] = "W";
+            }
+            return true;
+        }
+
+        public static string MovimentoHeroi()
         {
             Heroi hero = new Heroi();
-            Monstro[] monstros = {monstro1,monstro2,monstro3,monstro4,monstro5,monstro6};
+            Monstro monstro = new Monstro();
             for (int i = 0; i < 20; i++)
             {
                 for (int j = 0; j < 20; j++)
@@ -120,6 +132,12 @@ namespace Jogo
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
                                 }
+                                else if (Mapa.mapa[cimabaixo, esqdir - 1] == "W")
+                                {
+                                    hero.pegaArma();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
+                                }
                                 else
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -143,6 +161,12 @@ namespace Jogo
                                 else if (Mapa.mapa[cimabaixo, esqdir + 1] == "P")
                                 {
                                     hero.bebePocao();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir + 1] == "W")
+                                {
+                                    hero.pegaArma();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
                                 }
@@ -171,6 +195,12 @@ namespace Jogo
                                     hero.bebePocao();
                                     return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
                                 }
+                                else if (Mapa.mapa[cimabaixo + 1, esqdir] == "W")
+                                {
+                                    hero.pegaArma();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
+                                }
                                 else
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -196,6 +226,12 @@ namespace Jogo
                                     hero.bebePocao();
                                     return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
                                 }
+                                else if (Mapa.mapa[cimabaixo - 1, esqdir] == "W")
+                                {
+                                    hero.pegaArma();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
+                                }
                                 else
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
@@ -207,75 +243,19 @@ namespace Jogo
                                 Environment.Exit(0);
                                 break;
                             case ConsoleKey.Spacebar:
-                                for (int index = 0; index < 6; index++)
+                                if (Mapa.mapa[cimabaixo, esqdir - 1] == Monstro.getValor())
                                 {
-                                
-
-
-                                            if (Mapa.mapa[cimabaixo + 1, esqdir] == monstros[index].getValoratk())
-                                            {
-                                                monstros[index].reduzVida(hero.getDano());
-                                                if (monstros[index].getVida() < 0)
-                                                {
-                                                    Mapa.mapa[cimabaixo+1, esqdir] = "O";
-                                                    hero.MatarMonstro();
-                                                }
-                                            }
-                                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == monstros[index].getValoratk())
-                                            {
-                                                monstros[index].reduzVida(hero.getDano());
-                                                if (monstros[index].getVida() < 0)
-                                                {
-                                                    Mapa.mapa[cimabaixo-1, esqdir] = "O";
-                                                    hero.MatarMonstro();
-                                                }
-                                            }
-                                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == monstros[index].getValoratk())
-                                            {
-                                                monstros[index].reduzVida(hero.getDano());
-                                                if (monstros[index].getVida() < 0)
-                                                {
-                                                    Mapa.mapa[cimabaixo, esqdir+1] = "O";
-                                                    hero.MatarMonstro();
-                                                }
-                                            }
-                                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == monstros[index].getValoratk())
-                                            {
-                                                monstros[index].reduzVida(hero.getDano());
-                                                if (monstros[index].getVida() < 0)
-                                                {
-                                                    Mapa.mapa[cimabaixo, esqdir-1] = "O";
-                                                    hero.MatarMonstro();
-                                                }
-                                            }
-                                       
+                                    monstro.perdeVida();
                                 }
                                 break;
-                                
                             default:
                                 break;
                         }
-                        
-
-
-
                     }
                 }
-                
-             
             }
-
-
-
-            
             return "none";
         }
-        
-       
-
-       
-
-
     }
 }
 

@@ -9,7 +9,7 @@ namespace Jogo
 
         private static string valor = "H";
         private static int vida = 25;
-        private int dano = 1;
+        private static int dano = 1;
         private static int score = 0;
 
         public String getValor()
@@ -45,10 +45,7 @@ namespace Jogo
         {
             score = score + 1;
         }
-        public void MatarMonstro()
-        {
-            score = score + 5;
-        }
+
     }
 
     public class Destino
@@ -64,13 +61,18 @@ namespace Jogo
     class Monstro
     {
         private static string valor = "M";
-        private static int vida = 5;
+        private int vida;
         private int dano = 1;
         private int indicehorizontal;
         private int indicevertical;
-        int posicaohorizontal;
-        int posicaovertical;
-
+        private int posicaohorizontal;
+        private int posicaovertical;
+        public Monstro()
+        {
+            vida = 5;
+            dano = 1;
+        }
+        
         public void nasceMonstro()
         {
             int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
@@ -85,6 +87,11 @@ namespace Jogo
             {
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
             }
+        }
+        public void perdeVida()
+        {
+            Heroi hero = new Heroi();
+            vida = vida - hero.getDano();
         }
         public int getPosicaoHorizontal()
         {
@@ -194,23 +201,24 @@ namespace Jogo
             return "none";
         }
 
-        public String getValoratk()
-        {
-            return valor;
-        }
         public static String getValor()
         {
             return valor;
         }
-        public int getVida()
-        {
-            return vida;
-        }
-        
 
-        public void reduzVida(int danoheroi)
+        public void reduzVida()
         {
-            vida=vida-danoheroi;
+            vida--;
+        }
+    }
+    class Boss: Monstro
+    {
+        private int vida;
+        private int dano;
+        public Boss()
+        {
+            vida = 10;
+            dano = 2;
         }
     }
 
