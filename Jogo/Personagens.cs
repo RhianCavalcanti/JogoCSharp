@@ -133,7 +133,7 @@ namespace Jogo
         //int monstrocimabaixo = i;
                    
 
-        if (MovimentoHorizontalMonstros() == "esquerda") //&& getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
+        if (MovimentoHorizontalMonstros() == "esquerda" & getPosicaoHorizontal() > 2 & getPosicaoVertical() > 2 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
         {
                 if (getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 || getPosicaoHorizontal() > 0 && getPosicaoVertical() > 2) //criar classe de teste para testar este novo if
                 {
@@ -147,7 +147,7 @@ namespace Jogo
                 setPosicaoHorizontal(indice);
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
         }
-        else if (MovimentoHorizontalMonstros() == "direita") // & getPosicaoHorizontal() < 17 &getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
+        else if (MovimentoHorizontalMonstros() == "direita" & getPosicaoHorizontal() < 17 & getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
         {
                 if (getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 || getPosicaoHorizontal() < 19 && getPosicaoVertical() < 17)
                 {

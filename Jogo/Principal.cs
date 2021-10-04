@@ -93,6 +93,10 @@ namespace Jogo
                 Config.MovimentoHeroi();
                 monstro1.MovimentoMonstros();
                 monstro2.MovimentoMonstros();
+                monstro3.MovimentoMonstros();
+                monstro4.MovimentoMonstros();
+                monstro5.MovimentoMonstros();
+                monstro6.MovimentoMonstros();
             } while (consoleAberto);
 
         }
