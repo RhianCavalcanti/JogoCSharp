@@ -14,7 +14,7 @@ namespace Jogo
             var consoleAberto = true;
             Mapa.mapa[0, 0] = hero.getValor();
             Mapa.mapa[19, 19] = destino.getValor();
-           // Config.NascimentoMonstros();
+           
             Config.Pocoes();
             Monstro monstro1 = new Monstro();
             monstro1.nasceMonstro();
@@ -84,13 +84,33 @@ namespace Jogo
                 }
                 Console.WriteLine("\n");
                 //Config.MovimentoMonstros();
-                Config.MovimentoHeroi();
-                monstro1.MovimentoMonstros();
-                monstro2.MovimentoMonstros();
-                monstro3.MovimentoMonstros();
-                monstro4.MovimentoMonstros();
-                monstro5.MovimentoMonstros();
-                monstro6.MovimentoMonstros();
+                Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+                if (monstro1.getVida() > 0)
+                {
+                    monstro1.MovimentoMonstros();
+                }
+                if (monstro2.getVida() > 0)
+                {
+                    monstro2.MovimentoMonstros();
+                }
+                if (monstro3.getVida() > 0)
+                {
+                    monstro3.MovimentoMonstros();
+                }
+                if (monstro4.getVida() > 0)
+                {
+                    monstro4.MovimentoMonstros();
+                }
+                if (monstro5.getVida() > 0)
+                {
+                    monstro5.MovimentoMonstros();
+                }
+                if (monstro6.getVida() > 0)
+                {
+                    monstro6.MovimentoMonstros();
+                }
+                
+
             } while (consoleAberto);
 
         }
