@@ -20,6 +20,14 @@ namespace Jogo
             monstro1.nasceMonstro();
             Monstro monstro2 = new Monstro();
             monstro2.nasceMonstro();
+            Monstro monstro3 = new Monstro();
+            monstro3.nasceMonstro();
+            Monstro monstro4 = new Monstro();
+            monstro4.nasceMonstro();
+            Monstro monstro5 = new Monstro();
+            monstro5.nasceMonstro();
+            Monstro monstro6 = new Monstro();
+            monstro6.nasceMonstro();
 
 
 
