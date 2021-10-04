@@ -16,6 +16,7 @@ namespace Jogo
             Mapa.mapa[19, 19] = destino.getValor();
            // Config.NascimentoMonstros();
             Config.Pocoes();
+            Config.Arma();
             Monstro monstro1 = new Monstro();
             monstro1.nasceMonstro();
             Monstro monstro2 = new Monstro();
@@ -67,6 +68,11 @@ namespace Jogo
                             else if (mapacor == "D")
                             {
                                 Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                Console.Write(character + " ");
+                            }
+                            else if (mapacor == "W")
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.Write(character + " ");
                             }
                             else
