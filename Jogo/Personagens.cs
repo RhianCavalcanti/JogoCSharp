@@ -9,7 +9,7 @@ namespace Jogo
 
         private static string valor = "H";
         private static int vida = 25;
-        private int dano = 1;
+        private static int dano = 1;
         private static int score = 0;
 
         public String getValor()
@@ -65,8 +65,8 @@ namespace Jogo
         private int dano = 1;
         private int indicehorizontal;
         private int indicevertical;
-        int posicaohorizontal;
-        int posicaovertical;
+        private int posicaohorizontal;
+        private int posicaovertical;
 
         public void nasceMonstro()
         {
@@ -82,6 +82,11 @@ namespace Jogo
             {
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
             }
+        }
+        public void perdeVida()
+        {
+            Heroi hero = new Heroi();
+            vida = vida - hero.getDano();
         }
         public int getPosicaoHorizontal()
         {
