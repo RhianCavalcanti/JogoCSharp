@@ -27,6 +27,7 @@ namespace Jogo
             monstro5.nasceMonstro();
             Monstro monstro6 = new Monstro();
             monstro6.nasceMonstro();
+           
 
             do
             {
@@ -83,9 +84,11 @@ namespace Jogo
                 }
                 Console.WriteLine("\n");
                 Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+                Config.AtaqueMonstro(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
                 if (monstro1.getVida() > 0)
                 {
                     monstro1.MovimentoMonstros();
+                    
                 }
                 if (monstro2.getVida() > 0)
                 {
@@ -107,6 +110,7 @@ namespace Jogo
                 {
                     monstro6.MovimentoMonstros();
                 }
+                
             } while (consoleAberto);
         }
     }

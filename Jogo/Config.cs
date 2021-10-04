@@ -102,7 +102,7 @@ namespace Jogo
         {
             Heroi hero = new Heroi();
             Monstro[] monstros = { monstro1, monstro2, monstro3, monstro4, monstro5, monstro6 };
-            Monstro monstro = new Monstro();
+            
             for (int i = 0; i < 20; i++)
             {
                 for (int j = 0; j < 20; j++)
@@ -253,8 +253,10 @@ namespace Jogo
                                     if (Mapa.mapa[cimabaixo + 1, esqdir] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
+                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
+                                            
                                             Mapa.mapa[cimabaixo + 1, esqdir] = "O";
                                             hero.MatarMonstro();
                                         }
@@ -262,6 +264,7 @@ namespace Jogo
                                     else if (Mapa.mapa[cimabaixo - 1, esqdir] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
+                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             Mapa.mapa[cimabaixo - 1, esqdir] = "O";
@@ -271,6 +274,7 @@ namespace Jogo
                                     else if (Mapa.mapa[cimabaixo, esqdir + 1] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
+                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             Mapa.mapa[cimabaixo, esqdir + 1] = "O";
@@ -280,6 +284,7 @@ namespace Jogo
                                     else if (Mapa.mapa[cimabaixo, esqdir - 1] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
+                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             Mapa.mapa[cimabaixo, esqdir - 1] = "O";
@@ -291,6 +296,54 @@ namespace Jogo
                                 break;
                             default:
                                 break;
+                        }
+                    }
+                }
+            }
+            return "none";
+        }
+        public static string AtaqueMonstro(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6)
+        {
+            Heroi hero = new Heroi();
+            Monstro[] monstros = { monstro1, monstro2, monstro3, monstro4, monstro5, monstro6 };
+            
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    if (Mapa.mapa[i, j] == "M")
+                    {
+                        int cimabaixo = i;
+                        int esqdir = j;
+                        for (int index = 0; index < 6; index++)
+                        {
+
+
+
+                            if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstros[index].getVida() > 0)
+                            {
+
+                                hero.reduzVidaAtkMonstro(monstros[index].getDano());
+
+                            }
+                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstros[index].getVida() > 0)
+                            {
+
+                                hero.reduzVidaAtkMonstro(monstros[index].getDano());
+                            }
+                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstros[index].getVida() > 0)
+                            {
+                                
+                                hero.reduzVidaAtkMonstro(monstros[index].getDano());
+
+                            }
+                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstros[index].getVida() > 0)
+                            {
+                                
+                                hero.reduzVidaAtkMonstro(monstros[index].getDano());
+                                
+                            }
+
                         }
                     }
                 }
