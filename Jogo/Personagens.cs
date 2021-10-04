@@ -45,6 +45,10 @@ namespace Jogo
         {
             score = score + 1;
         }
+        public void MatarMonstro()
+        {
+            score = score + 5;
+        }
 
     }
 
@@ -201,14 +205,22 @@ namespace Jogo
             return "none";
         }
 
+        public String getValoratk()
+        {
+            return valor;
+        }
         public static String getValor()
         {
             return valor;
         }
-
-        public void reduzVida()
+        public int getVida()
         {
-            vida--;
+            return vida;
+        }
+
+        public void reduzVida(int danoheroi)
+        {
+            vida = vida - danoheroi;
         }
     }
     class Boss: Monstro

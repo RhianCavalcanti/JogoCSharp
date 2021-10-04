@@ -98,9 +98,10 @@ namespace Jogo
             return true;
         }
 
-        public static string MovimentoHeroi()
+        public static string ControlesHeroi(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6)
         {
             Heroi hero = new Heroi();
+            Monstro[] monstros = { monstro1, monstro2, monstro3, monstro4, monstro5, monstro6 };
             Monstro monstro = new Monstro();
             for (int i = 0; i < 20; i++)
             {
@@ -243,9 +244,49 @@ namespace Jogo
                                 Environment.Exit(0);
                                 break;
                             case ConsoleKey.Spacebar:
-                                if (Mapa.mapa[cimabaixo, esqdir - 1] == Monstro.getValor())
+                                hero.contaScore();
+                                for (int index = 0; index < 6; index++)
                                 {
-                                    monstro.perdeVida();
+
+
+
+                                    if (Mapa.mapa[cimabaixo + 1, esqdir] == monstros[index].getValoratk())
+                                    {
+                                        monstros[index].reduzVida(hero.getDano());
+                                        if (monstros[index].getVida() < 0)
+                                        {
+                                            Mapa.mapa[cimabaixo + 1, esqdir] = "O";
+                                            hero.MatarMonstro();
+                                        }
+                                    }
+                                    else if (Mapa.mapa[cimabaixo - 1, esqdir] == monstros[index].getValoratk())
+                                    {
+                                        monstros[index].reduzVida(hero.getDano());
+                                        if (monstros[index].getVida() < 0)
+                                        {
+                                            Mapa.mapa[cimabaixo - 1, esqdir] = "O";
+                                            hero.MatarMonstro();
+                                        }
+                                    }
+                                    else if (Mapa.mapa[cimabaixo, esqdir + 1] == monstros[index].getValoratk())
+                                    {
+                                        monstros[index].reduzVida(hero.getDano());
+                                        if (monstros[index].getVida() < 0)
+                                        {
+                                            Mapa.mapa[cimabaixo, esqdir + 1] = "O";
+                                            hero.MatarMonstro();
+                                        }
+                                    }
+                                    else if (Mapa.mapa[cimabaixo, esqdir - 1] == monstros[index].getValoratk())
+                                    {
+                                        monstros[index].reduzVida(hero.getDano());
+                                        if (monstros[index].getVida() < 0)
+                                        {
+                                            Mapa.mapa[cimabaixo, esqdir - 1] = "O";
+                                            hero.MatarMonstro();
+                                        }
+                                    }
+
                                 }
                                 break;
                             default:
