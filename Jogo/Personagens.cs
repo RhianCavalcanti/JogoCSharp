@@ -31,6 +31,17 @@ namespace Jogo
         public void reduzVida()
         {
             vida--;
+            if (vida == 0)
+            {
+                morre();
+                Environment.Exit(0);
+            }
+        }
+        public static void morre()
+        {
+            Console.WriteLine("======================================== \n"+
+                "======================================== \n" +
+                "Infelizmente a caminhada foi muito longa e o herói não completou a sua saga."); 
         }
 
         public void pegaArma()
@@ -92,11 +103,6 @@ namespace Jogo
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
             }
         }
-        public void perdeVida()
-        {
-            Heroi hero = new Heroi();
-            vida = vida - hero.getDano();
-        }
         public int getPosicaoHorizontal()
         {
             return posicaohorizontal;
@@ -137,14 +143,14 @@ namespace Jogo
         }
         public string MovimentoMonstros()
         {
+            Heroi hero = new Heroi();
             int indice;
        // int monstrodiresq = j;
         //int monstrocimabaixo = i;
-                   
+            if (MovimentoHorizontalMonstros() == "esquerda" & getPosicaoHorizontal() > 2 & getPosicaoVertical() > 2 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
 
-        if (MovimentoHorizontalMonstros() == "esquerda" & getPosicaoHorizontal() > 2 & getPosicaoVertical() > 2 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
-        {
-                if (getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 || getPosicaoHorizontal() > 0 && getPosicaoVertical() > 2) //criar classe de teste para testar este novo if
+            {
+                if (getPosicaoHorizontal() > 0)
                 {
                     indice = -1;
                 }
@@ -155,10 +161,13 @@ namespace Jogo
                 Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
                 setPosicaoHorizontal(indice);
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-        }
-        else if (MovimentoHorizontalMonstros() == "direita" & getPosicaoHorizontal() < 17 & getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
-        {
-                if (getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 || getPosicaoHorizontal() < 19 && getPosicaoVertical() < 17)
+            }
+            else if (Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "H"){
+                hero.reduzVida(); //ataca o herói
+            }
+            else if (MovimentoHorizontalMonstros() == "direita" & getPosicaoHorizontal() < 17 & getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
+            {
+                if (getPosicaoHorizontal() < 19)
                 {
                     indice = 1;
                 }
@@ -169,10 +178,13 @@ namespace Jogo
                 Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
                 setPosicaoHorizontal(indice);
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-        }
-        else if (MovimentoVerticalMonstros() == "cima" & getPosicaoVertical() > 2 & getPosicaoHorizontal() > 2 & Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
-        {
-                if (getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 || getPosicaoHorizontal() > 2 && getPosicaoVertical() > 0)
+            }
+            else if (Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "H"){
+                hero.reduzVida(); //ataca o herói
+            }          
+            else if (MovimentoVerticalMonstros() == "cima" & getPosicaoVertical() > 2 & getPosicaoHorizontal() > 2 & Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
+            {
+                if (getPosicaoHorizontal() > 0)
                 {
                     indice = -1;
                 }
@@ -183,10 +195,14 @@ namespace Jogo
                 Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
                 setPosicaoVertical(indice);
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-        }
-        else if (MovimentoVerticalMonstros() == "baixo" & getPosicaoVertical() < 17 & getPosicaoHorizontal() <17 & Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
-        {
-                if (getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 || getPosicaoHorizontal() < 19 && getPosicaoVertical() < 17)
+            }
+            else if (Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "H")
+            {
+                hero.reduzVida(); //ataca o herói
+            }
+            else if (MovimentoVerticalMonstros() == "baixo" & getPosicaoVertical() < 17 & getPosicaoHorizontal() < 17 & Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
+            {
+                if (getPosicaoHorizontal() < 19)
                 {
                     indice = 1;
                 }
@@ -197,11 +213,17 @@ namespace Jogo
                 Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
                 setPosicaoVertical(indice);
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-        }
-        else
-        {
+            }
+            else if (Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "H")
+            {
+                hero.reduzVida(); //ataca o herói
+            }
+            else
+            {
 
-        }
+            }
+            
+            
             return "none";
         }
 
@@ -221,6 +243,7 @@ namespace Jogo
         public void reduzVida(int danoheroi)
         {
             vida = vida - danoheroi;
+            //Console.WriteLine(mons);
         }
     }
     class Boss: Monstro
