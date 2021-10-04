@@ -65,6 +65,8 @@ namespace Jogo
         private int dano = 1;
         private int indicehorizontal;
         private int indicevertical;
+        int posicaohorizontal;
+        int posicaovertical;
 
         public void nasceMonstro()
         {
@@ -74,8 +76,8 @@ namespace Jogo
 
             indicehorizontal = rnd.Next(horizontal.Length);
             indicevertical = rnd.Next(vertical.Length);
-            int posicaohorizontal = horizontal[indicehorizontal];
-            int posicaovertical = vertical[indicevertical];
+            posicaohorizontal = horizontal[indicehorizontal];
+            posicaovertical = vertical[indicevertical];
             if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O" & Mapa.mapa[posicaovertical, posicaohorizontal] != Monstro.getValor())
             {
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
@@ -83,19 +85,19 @@ namespace Jogo
         }
         public int getPosicaoHorizontal()
         {
-            return indicehorizontal;
+            return posicaohorizontal;
         }
         public void setPosicaoHorizontal(int deslocamento)
         {
-            indicehorizontal = indicehorizontal + deslocamento;
+            posicaohorizontal = posicaohorizontal + deslocamento;
         }
         public int getPosicaoVertical()
         {
-            return indicevertical;
+            return posicaovertical;
         }
         public void setPosicaoVertical(int deslocamento)
         {
-            indicehorizontal = indicehorizontal + deslocamento;
+            posicaovertical = posicaovertical + deslocamento;
         }
 
         public static string MovimentoHorizontalMonstros()
@@ -126,9 +128,9 @@ namespace Jogo
         //int monstrocimabaixo = i;
                    
 
-        if (MovimentoHorizontalMonstros() == "esquerda" && getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
+        if (MovimentoHorizontalMonstros() == "esquerda") //&& getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
         {
-                if (getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 || getPosicaoHorizontal() > 0 && getPosicaoVertical() >2) //criar classe de teste para testar este novo if
+                if (getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 || getPosicaoHorizontal() > 0 && getPosicaoVertical() > 2) //criar classe de teste para testar este novo if
                 {
                     indice = -1;
                 }
@@ -136,27 +138,51 @@ namespace Jogo
                 {
                     indice = 1;
                 }
-            Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-            setPosicaoHorizontal(indice);
-            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+                setPosicaoHorizontal(indice);
+                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
         }
-        else if (MovimentoHorizontalMonstros() == "direita" & getPosicaoHorizontal() < 17 &getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
+        else if (MovimentoHorizontalMonstros() == "direita") // & getPosicaoHorizontal() < 17 &getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
         {
-            Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-            setPosicaoHorizontal(+1);
-            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+                if (getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 || getPosicaoHorizontal() < 19 && getPosicaoVertical() < 17)
+                {
+                    indice = 1;
+                }
+                else
+                {
+                    indice = -1;
+                }
+                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+                setPosicaoHorizontal(indice);
+                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
         }
         else if (MovimentoVerticalMonstros() == "cima" & getPosicaoVertical() > 2 & getPosicaoHorizontal() > 2 & Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
         {
-            Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-                setPosicaoVertical(-1);
-            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+                if (getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 || getPosicaoHorizontal() > 2 && getPosicaoVertical() > 0)
+                {
+                    indice = -1;
+                }
+                else
+                {
+                    indice = 1;
+                }
+                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+                setPosicaoVertical(indice);
+                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
         }
         else if (MovimentoVerticalMonstros() == "baixo" & getPosicaoVertical() < 17 & getPosicaoHorizontal() <17 & Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
         {
-            Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-            setPosicaoVertical(+1);
-            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+                if (getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 || getPosicaoHorizontal() < 19 && getPosicaoVertical() < 17)
+                {
+                    indice = 1;
+                }
+                else
+                {
+                    indice = -1;
+                }
+                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+                setPosicaoVertical(indice);
+                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
         }
         else
         {
