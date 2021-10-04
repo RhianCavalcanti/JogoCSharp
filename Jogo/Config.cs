@@ -160,6 +160,7 @@ namespace Jogo
                                     return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
                                 }
                                 break;
+
                             case ConsoleKey.D:
                                 hero.contaScore();
                                 if (esqdir >= 19)
