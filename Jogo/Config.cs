@@ -64,7 +64,7 @@ namespace Jogo
             int[] horizontal = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
             int[] vertical = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
             Random rnd = new Random();
-            while (qtdPocoes < 9)
+            while (qtdPocoes < 8)
             {
 
                 int indicehorizontal = rnd.Next(horizontal.Length);
@@ -253,7 +253,7 @@ namespace Jogo
                                     if (Mapa.mapa[cimabaixo + 1, esqdir] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
-                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
+                                        //hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             
@@ -264,7 +264,7 @@ namespace Jogo
                                     else if (Mapa.mapa[cimabaixo - 1, esqdir] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
-                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
+                                        //hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             Mapa.mapa[cimabaixo - 1, esqdir] = "O";
@@ -274,7 +274,7 @@ namespace Jogo
                                     else if (Mapa.mapa[cimabaixo, esqdir + 1] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
-                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
+                                        //hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             Mapa.mapa[cimabaixo, esqdir + 1] = "O";
@@ -284,10 +284,11 @@ namespace Jogo
                                     else if (Mapa.mapa[cimabaixo, esqdir - 1] == monstros[index].getValoratk())
                                     {
                                         monstros[index].reduzVida(hero.getDano());
-                                        hero.reduzVidaAtkMonstro(monstros[index].getDano());
+                                        //hero.reduzVidaAtkMonstro(monstros[index].getDano());
                                         if (monstros[index].getVida() < 0)
                                         {
                                             Mapa.mapa[cimabaixo, esqdir - 1] = "O";
+                                            monstros[index] = null;
                                             hero.MatarMonstro();
                                         }
                                     }
