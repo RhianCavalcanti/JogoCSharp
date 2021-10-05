@@ -64,7 +64,7 @@ namespace Jogo
             int[] horizontal = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
             int[] vertical = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
             Random rnd = new Random();
-            while (qtdPocoes < 9)
+            while (qtdPocoes < 8)
             {
 
                 int indicehorizontal = rnd.Next(horizontal.Length);
@@ -323,10 +323,10 @@ namespace Jogo
             }
             return "none";
         }
-        public static string AtaqueMonstro(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6)
+        public static string AtaqueMonstro(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6, Boss boss)
         {
             Heroi hero = new Heroi();
-            Monstro[] monstros = { monstro1, monstro2, monstro3, monstro4, monstro5, monstro6 };
+           
             
             for (int i = 0; i < 20; i++)
             {
@@ -479,6 +479,30 @@ namespace Jogo
                             {
 
                                 hero.reduzVidaAtkMonstro(monstro6.getDano());
+
+                            }
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & boss.getVida() > 0)
+                            {
+
+                                hero.reduzVidaAtkMonstro(boss.getDano());
+
+                            }
+                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & boss.getVida() > 0)
+                            {
+
+                                hero.reduzVidaAtkMonstro(boss.getDano());
+                            }
+                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & boss.getVida() > 0)
+                            {
+
+                                hero.reduzVidaAtkMonstro(boss.getDano());
+
+                            }
+                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & boss.getVida() > 0)
+                            {
+
+                                hero.reduzVidaAtkMonstro(boss.getDano());
 
                             }
 

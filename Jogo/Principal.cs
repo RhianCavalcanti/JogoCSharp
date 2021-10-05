@@ -89,7 +89,7 @@ namespace Jogo
                     Console.WriteLine();
                 }
                 Console.WriteLine("\n");
-                Config.AtaqueMonstro(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+                Config.AtaqueMonstro(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6,boss);
                 //Config.AtaqueMonstro(boss);
                 Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
                 
