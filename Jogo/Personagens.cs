@@ -49,7 +49,7 @@ namespace Jogo
         public static void morre()
         {
             Console.WriteLine("======================================== \n" +
-                "======================================== \n" +
+                "========================================= \n" +
                 "Infelizmente a caminhada foi muito longa e o herói não completou a sua saga.");
         }
 
@@ -85,16 +85,28 @@ namespace Jogo
     class Monstro
     {
         private static string valor = "M";
-        private int vida;
-        private int dano = 1;
-        private int indicehorizontal;
-        private int indicevertical;
-        private int posicaohorizontal;
-        private int posicaovertical;
+        private static int vida;
+        private static int dano;
+        protected int indicehorizontal;
+        protected int indicevertical;
+        protected int posicaohorizontal;
+        protected int posicaovertical;
         public Monstro()
         {
             vida = 5;
             dano = 1;
+            int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            Random rnd = new Random();
+
+            indicehorizontal = rnd.Next(horizontal.Length);
+            indicevertical = rnd.Next(vertical.Length);
+            posicaohorizontal = horizontal[indicehorizontal];
+            posicaovertical = vertical[indicevertical];
+            if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O" & Mapa.mapa[posicaovertical, posicaohorizontal] != Monstro.getValor())
+            {
+                Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
+            }
         }
 
         public void nasceMonstro()
@@ -156,7 +168,7 @@ namespace Jogo
             int indice;
             // int monstrodiresq = j;
             //int monstrocimabaixo = i;
-            if (MovimentoHorizontalMonstros() == "esquerda" & getPosicaoHorizontal() > 2 & getPosicaoVertical() > 2 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
+            if (MovimentoHorizontalMonstros() == "esquerda" && getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
 
             {
                 if (getPosicaoHorizontal() > 0)
@@ -172,7 +184,7 @@ namespace Jogo
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
             }
             
-            else if (MovimentoHorizontalMonstros() == "direita" & getPosicaoHorizontal() < 17 & getPosicaoVertical() < 17 & Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
+            else if (MovimentoHorizontalMonstros() == "direita" && getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
             {
                 if (getPosicaoHorizontal() < 19)
                 {
@@ -187,7 +199,7 @@ namespace Jogo
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
             }
             
-            else if (MovimentoVerticalMonstros() == "cima" & getPosicaoVertical() > 2 & getPosicaoHorizontal() > 2 & Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
+            else if (MovimentoVerticalMonstros() == "cima" && getPosicaoVertical() > 2 && getPosicaoHorizontal() > 2 && Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
             {
                 if (getPosicaoHorizontal() > 0)
                 {
@@ -202,7 +214,7 @@ namespace Jogo
                 return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
             }
             
-            else if (MovimentoVerticalMonstros() == "baixo" & getPosicaoVertical() < 17 & getPosicaoHorizontal() < 17 & Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
+            else if (MovimentoVerticalMonstros() == "baixo" && getPosicaoVertical() < 17 && getPosicaoHorizontal() < 17 && Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
             {
                 if (getPosicaoHorizontal() < 19)
                 {
@@ -246,18 +258,37 @@ namespace Jogo
         public void reduzVida(int danoheroi)
         {
             vida = vida - danoheroi;
-            //Console.WriteLine(mons);
         }
     }
     class Boss : Monstro
     {
+        private static String valor = "B";
         private int vida;
         private int dano;
+        
         public Boss()
         {
             vida = 10;
             dano = 2;
+
+            int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            Random rnd = new Random();
+
+            indicehorizontal = rnd.Next(horizontal.Length);
+            indicevertical = rnd.Next(vertical.Length);
+            posicaohorizontal = horizontal[indicehorizontal];
+            posicaovertical = vertical[indicevertical];
+            if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O") // && Mapa.mapa[posicaovertical, posicaohorizontal] != Boss.getValor())
+            {
+                Mapa.mapa[posicaovertical, posicaohorizontal] = Boss.getValor();
+            }
         }
+        private static string getValor()
+        {
+            return valor;
+        }
+
     }
 
 

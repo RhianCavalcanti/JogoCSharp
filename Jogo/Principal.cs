@@ -16,17 +16,18 @@ namespace Jogo
             Config.Pocoes();
             Config.Arma();
             Monstro monstro1 = new Monstro();
-            monstro1.nasceMonstro();
+            //monstro1.nasceMonstro();
             Monstro monstro2 = new Monstro();
-            monstro2.nasceMonstro();
+            //monstro2.nasceMonstro();
             Monstro monstro3 = new Monstro();
-            monstro3.nasceMonstro();
+            //monstro3.nasceMonstro();
             Monstro monstro4 = new Monstro();
-            monstro4.nasceMonstro();
+            //monstro4.nasceMonstro();
             Monstro monstro5 = new Monstro();
-            monstro5.nasceMonstro();
+            //monstro5.nasceMonstro();
             Monstro monstro6 = new Monstro();
-            monstro6.nasceMonstro();
+            //monstro6.nasceMonstro();
+            Boss boss = new Boss();
            
 
             do
@@ -57,6 +58,11 @@ namespace Jogo
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.Write(character + " ");
                             }
+                            else if (mapacor == "B")
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                Console.Write(character + " ");
+                            }
                             else if (mapacor == "P")
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
@@ -83,8 +89,10 @@ namespace Jogo
                     Console.WriteLine();
                 }
                 Console.WriteLine("\n");
-                Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
                 Config.AtaqueMonstro(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+                //Config.AtaqueMonstro(boss);
+                Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+                
                 if (monstro1.getVida() > 0)
                 {
                     monstro1.MovimentoMonstros();
@@ -109,6 +117,10 @@ namespace Jogo
                 if (monstro6.getVida() > 0)
                 {
                     monstro6.MovimentoMonstros();
+                }
+                if (boss.getVida() > 0)
+                {
+                    boss.MovimentoMonstros();
                 }
                 
             } while (consoleAberto);
