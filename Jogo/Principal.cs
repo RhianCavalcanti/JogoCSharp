@@ -16,17 +16,11 @@ namespace Jogo
             Config.Pocoes();
             Config.Arma();
             Monstro monstro1 = new Monstro();
-            //monstro1.nasceMonstro();
             Monstro monstro2 = new Monstro();
-            //monstro2.nasceMonstro();
             Monstro monstro3 = new Monstro();
-            //monstro3.nasceMonstro();
             Monstro monstro4 = new Monstro();
-            //monstro4.nasceMonstro();
             Monstro monstro5 = new Monstro();
-            //monstro5.nasceMonstro();
             Monstro monstro6 = new Monstro();
-            //monstro6.nasceMonstro();
             Boss boss = new Boss();
            
 
@@ -39,7 +33,7 @@ namespace Jogo
                 Console.Clear();
                 Console.WriteLine("========================================"+"\n"+ "Hero HP: "+ vidaheroi+" | "+
                     "Hero Damage: "+danoheroi+ " | "+"Score: " +score+"\n"+
-                    "========================================");
+                    "========================================\n");
                 for (int i = 0; i < 20; i++)
                 {
                     for (int j = 0; j < 20; j++)
@@ -88,15 +82,22 @@ namespace Jogo
                     }
                     Console.WriteLine();
                 }
-                Console.WriteLine("\n");
+                Console.WriteLine("\n======================================== \n" +
+                    " [A] to move left.    [D] to move right. \n" +
+                    " [W] to move up.      [S] to move down.  \n" +
+                    " [SPACE] to attack.   [ESC] to exit.     \n" +
+                    "======================================== ");
                 Config.AtaqueMonstro(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6,boss);
-                //Config.AtaqueMonstro(boss);
+                
+                if (Mapa.mapa[19, 19] == "H")
+                {
+                    hero.chegouAoDestino();
+                }
                 Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
                 
                 if (monstro1.getVida() > 0)
                 {
                     Config.MovimentoMonstros(monstro1);
-                    
                 }
                 if (monstro2.getVida() > 0)
                 {
