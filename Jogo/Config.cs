@@ -38,25 +38,7 @@ namespace Jogo
         public static Boolean clickEscape()
         {
             return false;
-        }
-
-        public static bool NascimentoMonstros()
-        {
-            int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            Random rnd = new Random();
-
-
-            int indicehorizontal = rnd.Next(horizontal.Length);
-            int indicevertical = rnd.Next(vertical.Length);
-            int posicaohorizontal = horizontal[indicehorizontal];
-            int posicaovertical = vertical[indicevertical];
-            if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O" & Mapa.mapa[posicaovertical, posicaohorizontal] != Monstro.getValor())
-            {
-                Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
-            }
-            return true;
-        }
+        }   
 
         public static bool Pocoes()
         {
@@ -98,17 +80,17 @@ namespace Jogo
             return true;
         }
 
-        public static string MovimentoMonstros(Object obj) //tentativa de fazer funcionar nas duas classes, mas não deu certo
+        public static string MovimentoMonstros(Object obj) 
         {
             Heroi hero = new Heroi();
             int indice;
             Type tipo;
 
-            // int monstrodiresq = j;
+            //int monstrodiresq = j;
             //int monstrocimabaixo = i;
             if (obj.GetType() == typeof(Monstro))
             {
-                Monstro monstro = (Monstro)obj;
+                Monstro monstro = (Monstro) obj;
                 if (Monstro.MovimentoHorizontalMonstros() == "esquerda" && monstro.getPosicaoHorizontal() > 2 && monstro.getPosicaoVertical() > 2 && Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal() - 1] == "O")
 
                 {
@@ -169,7 +151,7 @@ namespace Jogo
             }
             else if (obj.GetType() == typeof(Boss))
             {
-                Boss boss = (Boss)obj;
+                Boss boss = (Boss) obj;
                 if (Boss.MovimentoHorizontalMonstros() == "esquerda" && boss.getPosicaoHorizontal() > 2 && boss.getPosicaoVertical() > 2 && Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal() - 1] == "O")
                 {
                     if (boss.getPosicaoHorizontal() > 0)
@@ -252,26 +234,37 @@ namespace Jogo
                         switch (movimento.Key)
                         {
                             case ConsoleKey.A:
-                                hero.contaScore();
+                                
                                 if (esqdir <= 0)
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo, esqdir - 1] == Monstro.getValor())
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir - 1] == Boss.getValor())
+                                {
+                                    hero.reduzVidaBoss();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo, esqdir - 1] == "P")
                                 {
                                     hero.bebePocao();
+                                    hero.contaScore();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo, esqdir - 1] == "W")
                                 {
                                     hero.pegaArma();
+                                    hero.reduzVida();
+                                    hero.contaScore();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
                                 }
@@ -279,62 +272,99 @@ namespace Jogo
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir - 1] = hero.getValor();
                                 }
                                 break;
 
                             case ConsoleKey.D:
-                                hero.contaScore();
                                 if (esqdir >= 19)
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo, esqdir + 1] == Monstro.getValor())
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir + 1] == Boss.getValor())
+                                {
+                                    hero.reduzVidaBoss();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo, esqdir + 1] == "P")
                                 {
                                     hero.bebePocao();
+                                    hero.contaScore();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo, esqdir + 1] == "W")
                                 {
                                     hero.pegaArma();
+                                    hero.reduzVida();
+                                    hero.contaScore();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo, esqdir + 1] == "D")
+                                {
+                                    hero.reduzVida();
+                                    hero.contaScore();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
+                                    
                                 }
                                 else
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir + 1] = hero.getValor();
                                 }
                                 break;
                             case ConsoleKey.S:
-                                hero.contaScore();
                                 if (cimabaixo >= 19)
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo + 1, esqdir] == Monstro.getValor())
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo + 1, esqdir] == Boss.getValor())
+                                {
+                                    hero.reduzVidaBoss();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo + 1, esqdir] == "P")
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     hero.bebePocao();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo + 1, esqdir] == "W")
                                 {
                                     hero.pegaArma();
+                                    hero.reduzVida();
+                                    hero.contaScore();
+                                    Mapa.mapa[cimabaixo, esqdir] = "O";
+                                    return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo + 1, esqdir] == "D")
+                                {
+                                    hero.reduzVida();
+                                    hero.contaScore();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
                                 }
@@ -342,30 +372,41 @@ namespace Jogo
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo + 1, esqdir] = hero.getValor();
                                 }
                                 break;
                             case ConsoleKey.W:
-                                hero.contaScore();
                                 if (cimabaixo <= 0)
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo - 1, esqdir] == Monstro.getValor())
                                 {
                                     hero.reduzVida();
+                                    hero.contaScore();
+                                    return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
+                                }
+                                else if (Mapa.mapa[cimabaixo - 1, esqdir] == Boss.getValor())
+                                {
+                                    hero.reduzVidaBoss();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo - 1, esqdir] == "P")
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     hero.bebePocao();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
                                 }
                                 else if (Mapa.mapa[cimabaixo - 1, esqdir] == "W")
                                 {
                                     hero.pegaArma();
+                                    hero.reduzVida();
+                                    hero.contaScore();
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
                                 }
@@ -373,6 +414,7 @@ namespace Jogo
                                 {
                                     Mapa.mapa[cimabaixo, esqdir] = "O";
                                     hero.reduzVida();
+                                    hero.contaScore();
                                     return Mapa.mapa[cimabaixo - 1, esqdir] = hero.getValor();
                                 }
                                 break;
@@ -380,7 +422,6 @@ namespace Jogo
                                 Environment.Exit(0);
                                 break;
                             case ConsoleKey.Spacebar:
-                                hero.contaScore();
                                 hero.reduzVida();
                                 if(cimabaixo==0)
                                 {
@@ -394,11 +435,8 @@ namespace Jogo
                                 for (int index = 0; index < 6; index++)
                                 {
 
-
-
                                     if (cimabaixo != 0)
                                     {
-
 
                                         if (Mapa.mapa[cimabaixo + 1, esqdir] == monstros[index].getValoratk())
                                         {
@@ -424,9 +462,6 @@ namespace Jogo
                                     }
                                     else if (esqdir != 0)
                                     {
-
-
-
                                         if (Mapa.mapa[cimabaixo, esqdir + 1] == monstros[index].getValoratk())
                                         {
                                             monstros[index].reduzVida(hero.getDano());
@@ -450,6 +485,7 @@ namespace Jogo
                                     }
 
                                 }
+                                hero.contaScore();
                                 break;
                             default:
                                 break;
@@ -474,175 +510,173 @@ namespace Jogo
                         int esqdir = j;
                         
                             
-                            if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro1.getVida() > 0)
-                            {
+                        if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro1.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro1.getDano());
+                            hero.reduzVidaAtkMonstro(monstro1.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro1.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro1.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro1.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro1.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(monstro1.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro1.getVida() > 0)
+                        {
                                 
-                                hero.reduzVidaAtkMonstro(monstro1.getDano());
+                            hero.reduzVidaAtkMonstro(monstro1.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro1.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro1.getVida() > 0)
+                        {
                                 
-                                hero.reduzVidaAtkMonstro(monstro1.getDano());
+                            hero.reduzVidaAtkMonstro(monstro1.getDano());
                                 
-                            }
+                        }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro2.getVida() > 0)
-                            {
+                        else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro2.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro2.getDano());
+                            hero.reduzVidaAtkMonstro(monstro2.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro2.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro2.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro2.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro2.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(monstro2.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro2.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro2.getDano());
+                            hero.reduzVidaAtkMonstro(monstro2.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro2.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro2.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro2.getDano());
+                            hero.reduzVidaAtkMonstro(monstro2.getDano());
 
-                            }
+                        }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro3.getVida() > 0)
-                            {
+                        else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro3.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro3.getDano());
+                            hero.reduzVidaAtkMonstro(monstro3.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro3.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro3.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro3.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro3.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(monstro3.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro3.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro3.getDano());
+                            hero.reduzVidaAtkMonstro(monstro3.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro3.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro3.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro3.getDano());
+                            hero.reduzVidaAtkMonstro(monstro3.getDano());
 
-                            }
-                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro4.getVida() > 0)
-                            {
+                        }
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro4.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro4.getDano());
+                            hero.reduzVidaAtkMonstro(monstro4.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro4.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro4.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro4.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro4.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(monstro4.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro4.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro4.getDano());
+                            hero.reduzVidaAtkMonstro(monstro4.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro4.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro4.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro4.getDano());
+                            hero.reduzVidaAtkMonstro(monstro4.getDano());
 
-                            }
-                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro5.getVida() > 0)
-                            {
+                        }
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro5.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro5.getDano());
+                            hero.reduzVidaAtkMonstro(monstro5.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro5.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro5.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro5.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro5.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(monstro5.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro5.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro5.getDano());
+                            hero.reduzVidaAtkMonstro(monstro5.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro5.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro5.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro5.getDano());
+                            hero.reduzVidaAtkMonstro(monstro5.getDano());
 
-                            }
-                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro6.getVida() > 0)
-                            {
+                        }
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & monstro6.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro6.getDano());
+                            hero.reduzVidaAtkMonstro(monstro6.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro6.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & monstro6.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro6.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro6.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(monstro6.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & monstro6.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro6.getDano());
+                            hero.reduzVidaAtkMonstro(monstro6.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro6.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & monstro6.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(monstro6.getDano());
+                            hero.reduzVidaAtkMonstro(monstro6.getDano());
 
-                            }
-                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & boss.getVida() > 0)
-                            {
+                        }
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        else if (Mapa.mapa[cimabaixo + 1, esqdir] == hero.getValor() & boss.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(boss.getDano());
+                            hero.reduzVidaAtkMonstro(boss.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & boss.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo - 1, esqdir] == hero.getValor() & boss.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(boss.getDano());
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & boss.getVida() > 0)
-                            {
+                            hero.reduzVidaAtkMonstro(boss.getDano());
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir + 1] == hero.getValor() & boss.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(boss.getDano());
+                            hero.reduzVidaAtkMonstro(boss.getDano());
 
-                            }
-                            else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & boss.getVida() > 0)
-                            {
+                        }
+                        else if (Mapa.mapa[cimabaixo, esqdir - 1] == hero.getValor() & boss.getVida() > 0)
+                        {
 
-                                hero.reduzVidaAtkMonstro(boss.getDano());
+                            hero.reduzVidaAtkMonstro(boss.getDano());
 
-                            }
-
-                        
+                        }    
                     }
                 }
             }
