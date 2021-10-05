@@ -85,6 +85,7 @@ namespace Jogo
                 Console.WriteLine("\n");
                 Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
                 Config.AtaqueMonstro(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+
                 if (monstro1.getVida() > 0)
                 {
                     monstro1.MovimentoMonstros();
