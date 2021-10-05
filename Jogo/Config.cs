@@ -98,6 +98,142 @@ namespace Jogo
             return true;
         }
 
+        public static string MovimentoMonstros(Object obj) //tentativa de fazer funcionar nas duas classes, mas não deu certo
+        {
+            Heroi hero = new Heroi();
+            int indice;
+            Type tipo;
+
+            // int monstrodiresq = j;
+            //int monstrocimabaixo = i;
+            if (obj.GetType() == typeof(Monstro))
+            {
+                Monstro monstro = (Monstro)obj;
+                if (Monstro.MovimentoHorizontalMonstros() == "esquerda" && monstro.getPosicaoHorizontal() > 2 && monstro.getPosicaoVertical() > 2 && Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal() - 1] == "O")
+
+                {
+                    if (monstro.getPosicaoHorizontal() > 0)
+                    {
+                        indice = -1;
+                    }
+                    else
+                    {
+                        indice = 1;
+                    }
+                    Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = "O";
+                    monstro.setPosicaoHorizontal(indice);
+                    return Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = Monstro.getValor();
+                }
+                else if (Monstro.MovimentoHorizontalMonstros() == "direita" && monstro.getPosicaoHorizontal() < 17 && monstro.getPosicaoVertical() < 17 && Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal() + 1] == "O")
+                {
+                    if (monstro.getPosicaoHorizontal() < 19)
+                    {
+                        indice = 1;
+                    }
+                    else
+                    {
+                        indice = -1;
+                    }
+                    Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = "O";
+                    monstro.setPosicaoHorizontal(indice);
+                    return Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = Monstro.getValor();
+                }
+                else if (Monstro.MovimentoVerticalMonstros() == "cima" && monstro.getPosicaoVertical() > 2 && monstro.getPosicaoHorizontal() > 2 && Mapa.mapa[monstro.getPosicaoVertical() - 1, monstro.getPosicaoHorizontal()] == "O")
+                {
+                    if (monstro.getPosicaoHorizontal() > 0)
+                    {
+                        indice = -1;
+                    }
+                    else
+                    {
+                        indice = 1;
+                    }
+                    Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = "O";
+                    monstro.setPosicaoVertical(indice);
+                    return Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = Monstro.getValor();
+                }
+                else if (Monstro.MovimentoVerticalMonstros() == "baixo" && monstro.getPosicaoVertical() < 17 && monstro.getPosicaoHorizontal() < 17 && Mapa.mapa[monstro.getPosicaoVertical() + 1, monstro.getPosicaoHorizontal()] == "O")
+                {
+                    if (monstro.getPosicaoHorizontal() < 19)
+                    {
+                        indice = 1;
+                    }
+                    else
+                    {
+                        indice = -1;
+                    }
+                    Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = "O";
+                    monstro.setPosicaoVertical(indice);
+                    return Mapa.mapa[monstro.getPosicaoVertical(), monstro.getPosicaoHorizontal()] = Monstro.getValor();
+                }
+            }
+            else if (obj.GetType() == typeof(Boss))
+            {
+                Boss boss = (Boss)obj;
+                if (Boss.MovimentoHorizontalMonstros() == "esquerda" && boss.getPosicaoHorizontal() > 2 && boss.getPosicaoVertical() > 2 && Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal() - 1] == "O")
+                {
+                    if (boss.getPosicaoHorizontal() > 0)
+                    {
+                        indice = -1;
+                    }
+                    else
+                    {
+                        indice = 1;
+                    }
+                    Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = "O";
+                    boss.setPosicaoHorizontal(indice);
+                    return Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = Boss.getValor();
+                }
+                else if (Boss.MovimentoHorizontalMonstros() == "direita" && boss.getPosicaoHorizontal() < 17 && boss.getPosicaoVertical() < 17 && Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal() + 1] == "O")
+                {
+                    if (boss.getPosicaoHorizontal() < 19)
+                    {
+                        indice = 1;
+                    }
+                    else
+                    {
+                        indice = -1;
+                    }
+                    Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = "O";
+                    boss.setPosicaoHorizontal(indice);
+                    return Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = Boss.getValor();
+                }
+                else if (Boss.MovimentoVerticalMonstros() == "cima" && boss.getPosicaoVertical() > 2 && boss.getPosicaoHorizontal() > 2 && Mapa.mapa[boss.getPosicaoVertical() - 1, boss.getPosicaoHorizontal()] == "O")
+                {
+                    if (boss.getPosicaoHorizontal() > 0)
+                    {
+                        indice = -1;
+                    }
+                    else
+                    {
+                        indice = 1;
+                    }
+                    Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = "O";
+                    boss.setPosicaoVertical(indice);
+                    return Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = Boss.getValor();
+                }
+                else if (Boss.MovimentoVerticalMonstros() == "baixo" && boss.getPosicaoVertical() < 17 && boss.getPosicaoHorizontal() < 17 && Mapa.mapa[boss.getPosicaoVertical() + 1, boss.getPosicaoHorizontal()] == "O")
+                {
+                    if (boss.getPosicaoHorizontal() < 19)
+                    {
+                        indice = 1;
+                    }
+                    else
+                    {
+                        indice = -1;
+                    }
+                    Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = "O";
+                    boss.setPosicaoVertical(indice);
+                    return Mapa.mapa[boss.getPosicaoVertical(), boss.getPosicaoHorizontal()] = Boss.getValor();
+                }
+                else
+                {
+
+                }
+            }
+            return "none";
+        } 
+
         public static string ControlesHeroi(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6)
         {
             Heroi hero = new Heroi();

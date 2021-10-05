@@ -162,81 +162,129 @@ namespace Jogo
 
             return direcao;
         }
-        public string MovimentoMonstros()
-        {
-            Heroi hero = new Heroi();
-            int indice;
-            // int monstrodiresq = j;
-            //int monstrocimabaixo = i;
-            if (MovimentoHorizontalMonstros() == "esquerda" && getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
-
-            {
-                if (getPosicaoHorizontal() > 0)
-                {
-                    indice = -1;
-                }
-                else
-                {
-                    indice = 1;
-                }
-                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-                setPosicaoHorizontal(indice);
-                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-            }
+        //public string MovimentoMonstros(Object obj)
+        //{
+        //    Heroi hero = new Heroi();
+        //    int indice;
+        //    Type tipo;
             
-            else if (MovimentoHorizontalMonstros() == "direita" && getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
-            {
-                if (getPosicaoHorizontal() < 19)
-                {
-                    indice = 1;
-                }
-                else
-                {
-                    indice = -1;
-                }
-                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-                setPosicaoHorizontal(indice);
-                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-            }
-            
-            else if (MovimentoVerticalMonstros() == "cima" && getPosicaoVertical() > 2 && getPosicaoHorizontal() > 2 && Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
-            {
-                if (getPosicaoHorizontal() > 0)
-                {
-                    indice = -1;
-                }
-                else
-                {
-                    indice = 1;
-                }
-                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-                setPosicaoVertical(indice);
-                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-            }
-            
-            else if (MovimentoVerticalMonstros() == "baixo" && getPosicaoVertical() < 17 && getPosicaoHorizontal() < 17 && Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
-            {
-                if (getPosicaoHorizontal() < 19)
-                {
-                    indice = 1;
-                }
-                else
-                {
-                    indice = -1;
-                }
-                Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
-                setPosicaoVertical(indice);
-                return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
-            }
-            
-            else
-            {
+        //    // int monstrodiresq = j;
+        //    //int monstrocimabaixo = i;
+        //    if (MovimentoHorizontalMonstros() == "esquerda" && getPosicaoHorizontal() > 2 && getPosicaoVertical() > 2 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() - 1] == "O")
 
-            }
+        //    {
+        //        if (getPosicaoHorizontal() > 0)
+        //        {
+        //            indice = -1;
+        //        }
+        //        else
+        //        {
+        //            indice = 1;
+        //        }
+        //        Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+        //        setPosicaoHorizontal(indice);
+        //        if (obj.GetType() == typeof(Monstro))
+        //        {
+        //            setPosicaoHorizontal(indice);
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor(); 
+        //        }
+        //        else if(obj.GetType() == typeof(Boss))
+        //        {
+        //            setPosicaoHorizontal(indice);
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Boss.getValor();
+        //        }
+        //        else
+        //        {
 
+        //        }
+                
+        //    }
+            
+        //    else if (MovimentoHorizontalMonstros() == "direita" && getPosicaoHorizontal() < 17 && getPosicaoVertical() < 17 && Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal() + 1] == "O")
+        //    {
+        //        if (getPosicaoHorizontal() < 19)
+        //        {
+        //            indice = 1;
+        //        }
+        //        else
+        //        {
+        //            indice = -1;
+        //        }
+        //        Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+        //        setPosicaoHorizontal(indice);
+        //        if (obj.GetType() == typeof(Monstro))
+        //        {
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+        //        }
+        //        else if (obj.GetType() == typeof(Boss))
+        //        {
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Boss.getValor();
+        //        }
+        //        else
+        //        {
 
-            return "none";
-        }
+        //        }
+        //    }
+            
+        //    else if (MovimentoVerticalMonstros() == "cima" && getPosicaoVertical() > 2 && getPosicaoHorizontal() > 2 && Mapa.mapa[getPosicaoVertical() - 1, getPosicaoHorizontal()] == "O")
+        //    {
+        //        if (getPosicaoHorizontal() > 0)
+        //        {
+        //            indice = -1;
+        //        }
+        //        else
+        //        {
+        //            indice = 1;
+        //        }
+        //        Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+        //        setPosicaoVertical(indice);
+        //        if (obj.GetType() == typeof(Monstro))
+        //        {
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+        //        }
+        //        else if (obj.GetType() == typeof(Boss))
+        //        {
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Boss.getValor();
+        //        }
+        //        else
+        //        {
+
+        //        }
+        //    }
+            
+        //    else if (MovimentoVerticalMonstros() == "baixo" && getPosicaoVertical() < 17 && getPosicaoHorizontal() < 17 && Mapa.mapa[getPosicaoVertical() + 1, getPosicaoHorizontal()] == "O")
+        //    {
+        //        if (getPosicaoHorizontal() < 19)
+        //        {
+        //            indice = 1;
+        //        }
+        //        else
+        //        {
+        //            indice = -1;
+        //        }
+        //        Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = "O";
+        //        setPosicaoVertical(indice);
+        //        if (obj.GetType() == typeof(Monstro))
+        //        {
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Monstro.getValor();
+        //        }
+        //        else if (obj.GetType() == typeof(Boss))
+        //        {
+        //            return Mapa.mapa[getPosicaoVertical(), getPosicaoHorizontal()] = Boss.getValor();
+        //        }
+        //        else
+        //        {
+
+        //        }
+        //    }
+            
+        //    else
+        //    {
+
+        //    }
+
+        //    return "none";
+        //}
 
         public String getValoratk()
         {
@@ -289,6 +337,15 @@ namespace Jogo
             return valor;
         }
 
+        public void setPosicaoHorizontal(int deslocamento)
+        {
+            posicaohorizontal = posicaohorizontal + deslocamento;
+        }
+
+        public void setPosicaoVertical(int deslocamento)
+        {
+            posicaovertical = posicaovertical + deslocamento;
+        }
     }
 
 

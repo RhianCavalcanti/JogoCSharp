@@ -95,32 +95,32 @@ namespace Jogo
                 
                 if (monstro1.getVida() > 0)
                 {
-                    monstro1.MovimentoMonstros();
+                    Config.MovimentoMonstros(monstro1);
                     
                 }
                 if (monstro2.getVida() > 0)
                 {
-                    monstro2.MovimentoMonstros();
+                    Config.MovimentoMonstros(monstro2);
                 }
                 if (monstro3.getVida() > 0)
                 {
-                    monstro3.MovimentoMonstros();
+                    Config.MovimentoMonstros(monstro3);
                 }
                 if (monstro4.getVida() > 0)
                 {
-                    monstro4.MovimentoMonstros();
+                    Config.MovimentoMonstros(monstro4);
                 }
                 if (monstro5.getVida() > 0)
                 {
-                    monstro5.MovimentoMonstros();
+                    Config.MovimentoMonstros(monstro5);
                 }
                 if (monstro6.getVida() > 0)
                 {
-                    monstro6.MovimentoMonstros();
+                    Config.MovimentoMonstros(monstro6);
                 }
                 if (boss.getVida() > 0)
                 {
-                    boss.MovimentoMonstros();
+                    Config.MovimentoMonstros(boss);
                 }
                 
             } while (consoleAberto);
