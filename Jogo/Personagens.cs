@@ -10,7 +10,9 @@ namespace Jogo
         private static string valor = "H";
         private static int vida = 25;
         private static int dano = 1;
-        private static int score = 0;
+        private static int score = vida;
+        private static int bossMorto = 0;
+        private static int monstrosMortos = 0;
 
         public String getValor()
         {
@@ -75,19 +77,19 @@ namespace Jogo
         }
         public void contaScore()
         {
-            score = score+1;
+            score = vida + 15 * bossMorto + 5 * monstrosMortos;
         }
         public void MatarMonstro()
         {
-            score = score + 5;
+            monstrosMortos++;
         }
         public void MatarBoss()
         {
-            score = score + 15;
+            bossMorto++;
         }
         public void chegouAoDestino()
         {
-            score = score + vida;
+            score = getScore();
             Console.WriteLine("\nParabéns, nobre Herói!!!\n" +
                 "Você completou a sua jornada.\n" +
                 "Seu score foi de: " + getScore() + ". ");
@@ -132,21 +134,6 @@ namespace Jogo
             }
         }
 
-        public void nasceMonstro()
-        {
-            int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-            Random rnd = new Random();
-
-            indicehorizontal = rnd.Next(horizontal.Length);
-            indicevertical = rnd.Next(vertical.Length);
-            posicaohorizontal = horizontal[indicehorizontal];
-            posicaovertical = vertical[indicevertical];
-            if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O" & Mapa.mapa[posicaovertical, posicaohorizontal] != Monstro.getValor())
-            {
-                Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
-            }
-        }
         public int getPosicaoHorizontal()
         {
             return posicaohorizontal;
