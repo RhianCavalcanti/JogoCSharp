@@ -10,7 +10,7 @@ namespace Jogo
         private static string valor = "H";
         private static int vida = 25;
         private static int dano = 1;
-        private static int score = vida;
+        private static int score = 0;
 
         public String getValor()
         {
@@ -74,7 +74,7 @@ namespace Jogo
         }
         public void contaScore()
         {
-            score = vida;
+            score = score+1;
         }
         public void MatarMonstro()
         {
@@ -86,6 +86,7 @@ namespace Jogo
         }
         public void chegouAoDestino()
         {
+            score = score + vida;
             Console.WriteLine("\nParabéns, nobre Herói!!!\n" +
                 "Você completou a sua jornada.\n" +
                 "Seu score foi de: " + getScore() + ". ");
