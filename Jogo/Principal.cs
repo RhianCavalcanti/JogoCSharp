@@ -22,7 +22,13 @@ namespace Jogo
             Monstro monstro5 = new Monstro();
             Monstro monstro6 = new Monstro();
             Boss boss = new Boss();
-            
+            monstro1.nascimentoMonstro();
+            monstro2.nascimentoMonstro();
+            monstro3.nascimentoMonstro();
+            monstro4.nascimentoMonstro();
+            monstro5.nascimentoMonstro();
+            monstro6.nascimentoMonstro();
+
 
             do
             {
@@ -31,6 +37,7 @@ namespace Jogo
                 int score = hero.getScore();
                 if (vidaheroi > 0)//esses dois ifs é para corrigir o erro em que a vida do heroi chegava a 0, mas o programa terminava antes e a vida não chegava a 0
                 {
+
 
 
                     Console.Clear();

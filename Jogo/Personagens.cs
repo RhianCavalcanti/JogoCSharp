@@ -120,6 +120,10 @@ namespace Jogo
         {
             vida = 5;
             dano = 1;
+            
+        }
+        public void nascimentoMonstro()
+        {
             int[] horizontal = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
             int[] vertical = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
             Random rnd = new Random();
@@ -133,7 +137,6 @@ namespace Jogo
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Monstro.getValor();
             }
         }
-
         public int getPosicaoHorizontal()
         {
             return posicaohorizontal;
@@ -214,7 +217,7 @@ namespace Jogo
             indicevertical = rnd.Next(vertical.Length);
             posicaohorizontal = horizontal[indicehorizontal];
             posicaovertical = vertical[indicevertical];
-            if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O") // && Mapa.mapa[posicaovertical, posicaohorizontal] != Boss.getValor())
+            if (Mapa.mapa[posicaovertical, posicaohorizontal] == "O")// && Mapa.mapa[posicaovertical, posicaohorizontal] != Boss.getValor())
             {
                 Mapa.mapa[posicaovertical, posicaohorizontal] = Boss.getValor();
             }

@@ -221,7 +221,7 @@ namespace Jogo
         public static string ControlesHeroi(Monstro monstro1, Monstro monstro2, Monstro monstro3, Monstro monstro4, Monstro monstro5, Monstro monstro6, Boss boss)
         {
             Heroi hero = new Heroi();
-            Monstro[] monstros = { monstro1, monstro2, monstro3, monstro4, monstro5, monstro6};
+            
             
             for (int i = 0; i < 20; i++)
             {
