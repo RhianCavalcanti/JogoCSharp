@@ -209,8 +209,8 @@ namespace Jogo
     class Boss : Monstro
     {
         private static String valor = "B";
-        private int vida;
-        private int dano;
+        private static int vida;
+        private static int dano;
         
         public Boss()
         {
@@ -234,7 +234,22 @@ namespace Jogo
         {
             return valor;
         }
-
+        public String getValoratk()
+        {
+            return valor;
+        }
+        public int getDano()
+        {
+            return dano;
+        }
+        public int getVida()
+        {
+            return vida;
+        }
+        public void reduzVida(int danoheroi)
+        {
+            vida = vida - danoheroi;
+        }
         public void setPosicaoHorizontal(int deslocamento)
         {
             posicaohorizontal = posicaohorizontal + deslocamento;

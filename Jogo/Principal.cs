@@ -93,7 +93,7 @@ namespace Jogo
                 {
                     hero.chegouAoDestino();
                 }
-                Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6);
+                Config.ControlesHeroi(monstro1, monstro2, monstro3, monstro4, monstro5, monstro6, boss);
                 
                 if (monstro1.getVida() > 0)
                 {
