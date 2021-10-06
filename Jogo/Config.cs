@@ -35,6 +35,8 @@ namespace Jogo
     }
     class Config
     {
+       
+    
         public static Boolean clickEscape()
         {
             return false;

@@ -34,7 +34,7 @@ namespace Jogo
             if (vida <= 0)
             {
                 morre();
-                Environment.Exit(0);
+                
             }
         }
         public void reduzVidaBoss()
@@ -43,7 +43,7 @@ namespace Jogo
             if (vida <= 0)
             {
                 morre();
-                Environment.Exit(0);
+                
             }
         }
         public void reduzVidaAtkMonstro(int danomonstro)
@@ -51,8 +51,8 @@ namespace Jogo
             vida=vida-danomonstro;
             if (vida <= 0)
             {
-                morre();
-                Environment.Exit(0);
+               morre();
+                
             }
         }
         public static void morre()
@@ -62,6 +62,7 @@ namespace Jogo
                 "Infelizmente a caminhada muito longa e os \n" +
                 "desafios severos no caminho não permitiram\n" +
                 "que o herói completasse a sua saga.");
+         
         }
 
         public void pegaArma()
